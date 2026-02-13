@@ -9,15 +9,6 @@ build/
 # Virtual environment
 .venv/
 
-# Nix
-.direnv/
-result
-result-*
-
-# devenv
-.devenv/
-devenv.lock
-.devenv.flake.nix
 
 # IDE
 .vscode/

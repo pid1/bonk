@@ -4,8 +4,6 @@ Turning your PC into a 2004 DVD player on standby.
 
 A bouncing DVD logo screensaver written in Python. It changes color every time it hits an edge, and yes it could hit the corner if you look at it long enough.
 
-![dvdlogo](../assets/dvd_logo.png)
-
 ## Features
 
 - Bouncing DVD logo on a black fullscreen background
@@ -17,53 +15,35 @@ A bouncing DVD logo screensaver written in Python. It changes color every time i
 
 ### Prerequisites
 
-- [Nix](https://nixos.org/download.html) with flakes enabled
-- [devenv](https://devenv.sh/getting-started/)
+- Python 3.14+
+- [uv](https://docs.astral.sh/uv/getting-started/installation/)
 
 ### Getting Started
 
 ```bash
-# Enter development environment
-devenv shell
-
 # Install dependencies
-setup
+uv sync
 
 # Launch the screensaver
-dev
+uv run bonk
 ```
 
 ### Available Commands
 
-Run these commands inside `devenv shell`:
-
-- `setup` — Install dependencies
-- `dev` — Launch screensaver fullscreen
-- `build` — Build standalone executable with PyInstaller
-- `lint` — Run linter
-- `test` — Run tests
+- `uv sync` — Install dependencies
+- `uv run bonk` — Launch screensaver fullscreen
+- `uv run ruff check .` — Run linter
+- `uv run pytest` — Run tests
 
 See `AGENTS.md` for the complete command reference.
-
-### Without devenv
-
-```bash
-# Requires Python 3.14+ and uv
-uv sync
-uv run bonk
-```
 
 ## Building a Standalone Executable
 
 Build a single-file executable using PyInstaller:
 
 ```bash
-# Inside devenv shell
-build
-
-# Or manually
 uv sync --extra build
-uv run pyinstaller --name bonk --onefile --windowed --add-data "assets:assets" src/dvd_screensaver/__main__.py
+uv run pyinstaller --name bonk --onefile --windowed --add-data "assets:assets" src/bonk/__main__.py
 ```
 
 The executable will be at `dist/bonk.exe`.
@@ -87,7 +67,3 @@ The executable will be at `dist/bonk.exe`.
    ```
 
 3. In **Settings → Personalization → Lock Screen → Screen saver settings**, select `bonk`.
-
-## License
-
-[MIT License](../license.txt)
