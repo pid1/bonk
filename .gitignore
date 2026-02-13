@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.spec
+
+# Virtual environment
+.venv/
+
+# Nix
+.direnv/
+result
+result-*
+
+# devenv
+.devenv/
+devenv.lock
+.devenv.flake.nix
+
+# IDE
+.vscode/
+.idea/
+
+# PyInstaller
+*.manifest
