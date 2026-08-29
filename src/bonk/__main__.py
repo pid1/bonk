@@ -82,17 +82,22 @@ def _get_monitors_win32(offset_x: int, offset_y: int) -> list[tuple[int, int, in
 
     def callback(hmon, hdc, lprect, lparam):
         r = lprect.contents
-        monitors.append((
-            r.left - offset_x,
-            r.top - offset_y,
-            r.right - r.left,
-            r.bottom - r.top,
-        ))
+        monitors.append(
+            (
+                r.left - offset_x,
+                r.top - offset_y,
+                r.right - r.left,
+                r.bottom - r.top,
+            )
+        )
         return True
 
     proc = ctypes.WINFUNCTYPE(
-        ctypes.c_int, ctypes.c_void_p, ctypes.c_void_p,
-        ctypes.POINTER(wintypes.RECT), wintypes.LPARAM,
+        ctypes.c_int,
+        ctypes.c_void_p,
+        ctypes.c_void_p,
+        ctypes.POINTER(wintypes.RECT),
+        wintypes.LPARAM,
     )(callback)
     ctypes.windll.user32.EnumDisplayMonitors(None, None, proc, 0)
     return monitors
@@ -111,7 +116,7 @@ def main() -> None:
     if sys.platform == "win32":
         try:
             ctypes.windll.shcore.SetProcessDpiAwareness(2)  # Per-monitor DPI aware
-        except (AttributeError, OSError):
+        except AttributeError, OSError:
             ctypes.windll.user32.SetProcessDPIAware()  # Fallback for older Windows
 
     pygame.init()
@@ -154,14 +159,19 @@ def main() -> None:
     # Create an independent bouncing instance for each monitor
     instances = []
     for mx, my, mw, mh in monitor_rects:
-        instances.append({
-            "mx": mx, "my": my, "mw": mw, "mh": mh,
-            "x": float(mx + (mw - logo_w) // 2),
-            "y": float(my + (mh - logo_h) // 2),
-            "vel_x": SPEED * random.choice([-1, 1]),
-            "vel_y": SPEED * random.choice([-1, 1]),
-            "logo": tint_surface(logo_original),
-        })
+        instances.append(
+            {
+                "mx": mx,
+                "my": my,
+                "mw": mw,
+                "mh": mh,
+                "x": float(mx + (mw - logo_w) // 2),
+                "y": float(my + (mh - logo_h) // 2),
+                "vel_x": SPEED * random.choice([-1, 1]),
+                "vel_y": SPEED * random.choice([-1, 1]),
+                "logo": tint_surface(logo_original),
+            }
+        )
 
     # Track initial mouse position for screensaver-style quit behavior
     initial_mouse_pos: tuple[int, int] | None = None
