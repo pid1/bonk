@@ -31,7 +31,7 @@ uv run bonk
 
 ### Project Structure
 
-```
+```text
 bonk/
 ├── assets/              # DVD logo images
 │   ├── dvd_logo.png
