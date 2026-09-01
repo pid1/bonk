@@ -1,4 +1,4 @@
-# Bonk 
+# Bonk
 
 Turning your PC into a 2004 DVD player on standby.
 
@@ -51,11 +51,13 @@ The executable will be at `dist/bonk.exe`.
 ## Installing as a Windows Screensaver
 
 1. **Build the executable:**
+
    ```bash
    build
    ```
 
 2. **Rename and install:**
+
    ```powershell
    # Rename to .scr
    Rename-Item dist\bonk.exe bonk.scr
