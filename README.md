@@ -15,7 +15,7 @@ A bouncing DVD logo screensaver written in Python. It changes color every time i
 
 ### Prerequisites
 
-- Python 3.14+
+- Python 3.15+
 - [uv](https://docs.astral.sh/uv/getting-started/installation/)
 
 ### Getting Started
