@@ -2,7 +2,7 @@
 
 ## Development Environment
 
-This project uses [uv](https://docs.astral.sh/uv/) for dependency management and Python 3.14.
+This project uses [uv](https://docs.astral.sh/uv/) for dependency management and Python 3.15.
 
 ### Quick Setup
 
@@ -46,7 +46,7 @@ bonk/
 
 ### Tech Stack
 
-- **Language**: Python 3.14
+- **Language**: Python 3.15
 - **Graphics**: pygame-ce
 - **Package manager**: uv
 - **Linter/Formatter**: ruff
