@@ -24,6 +24,10 @@ dev = [
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
+[tool.uv]
+# sadr: install only releases that have been public for 7 days
+exclude-newer = "7 days"
+
 [tool.hatch.build.targets.wheel]
 packages = ["src/bonk"]
 
