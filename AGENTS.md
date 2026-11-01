@@ -52,3 +52,13 @@ bonk/
 - **Linter/Formatter**: ruff
 - **Tests**: pytest
 - **Build**: PyInstaller (for standalone executables)
+
+## Sadr
+
+### Build and test
+
+- `uv sync --locked --extra dev`, then `uv run ruff check .` and `uv run ruff format --check .`. Both pass on a clean tree.
+- `uv run pytest` exits 5 because the repo has no tests and `tests/` does not exist. Exit 5 counts as passing.
+- Smoke test on a headless host: `SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy timeout 5 uv run bonk`. Exit 124 (killed by `timeout`) means the app started and kept running.
+- Build check: `uv sync --locked --extra build`, then the PyInstaller command above. With `--specpath DIR`, pass `--add-data "$PWD/assets:assets"`, because PyInstaller reads a relative data path from the spec folder.
+- CI runs only Semgrep (`.github/workflows/semgrep.yml`). It runs no lint, test or build job.
